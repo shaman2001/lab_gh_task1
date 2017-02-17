@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="GithubTests"  verbose="5">
+  <test name="HomePageTest">
+  <parameter name = "project-name" value = "task1"></parameter>
+    <classes>
+      <class name="com.epam.HomePageTest"/>
+    </classes>
+  </test>
+  <test name="UserProfilePageTest">
+    <parameter name = "project-name" value = "task1"></parameter>
+    <classes>
+      <class name="com.epam.UserProfilePageTest"/>
+    </classes>
+  </test>
+</suite>
