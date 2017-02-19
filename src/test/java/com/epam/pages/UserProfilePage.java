@@ -10,7 +10,6 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class UserProfilePage extends Page {
 
-
     @FindBy (xpath = ".//input[@id='user_profile_name']")
     private WebElement fProfName;
 
@@ -85,7 +84,7 @@ public class UserProfilePage extends Page {
         return  this.fProfLocation.getAttribute("value");
     }
 
-    public void setfProfLocation(String val) {
+    public void setProfLocation(String val) {
         this.fProfLocation.sendKeys(val);
     }
 
@@ -94,8 +93,10 @@ public class UserProfilePage extends Page {
     }
 
     public void btnUpdProfClick() {
-        btnUpdProfile.click();
+        if (btnUpdProfile.isEnabled()) {
+            btnUpdProfile.click();
+            PageFactory.initElements(this.webDriver, this);
+        }
     }
-
 
 }

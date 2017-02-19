@@ -21,6 +21,7 @@ public class HomePageTest extends PageTest {
   @Test
   public void testDumbTest() {
     //driver.get(baseUrl);
+    logger.info("Run Dumb test");
     Assert.assertFalse(false);
   }
 }

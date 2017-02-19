@@ -40,6 +40,7 @@ public class UserProfilePageTest extends PageTest {
         String oldBioInfo = userProfPage.getProfBioInfo();
         userProfPage.setProfBioInfo(NEWBIOINFO);
         userProfPage.btnUpdProfClick();
+        userProfPage.refreshPage();
         String newBioInfo = userProfPage.getProfBioInfo();
         Assert.assertNotEquals(newBioInfo, oldBioInfo);
     }
@@ -50,6 +51,7 @@ public class UserProfilePageTest extends PageTest {
         String oldURLInfo = userProfPage.getProfURLInfo();
         userProfPage.setProfURLInfo(NEWURLINFO);
         userProfPage.btnUpdProfClick();
+        userProfPage.refreshPage();
         String newURLInfo = userProfPage.getProfURLInfo();
         Assert.assertNotEquals(newURLInfo, oldURLInfo);
     }
@@ -59,6 +61,7 @@ public class UserProfilePageTest extends PageTest {
         String oldCompanyInfo = userProfPage.getProfCompany();
         userProfPage.setProfCompany(NEWCOMPANYINFO);
         userProfPage.btnUpdProfClick();
+        userProfPage.refreshPage();
         String newCompanyInfo = userProfPage.getProfCompany();
         Assert.assertNotEquals(newCompanyInfo, oldCompanyInfo);
     }
@@ -66,8 +69,9 @@ public class UserProfilePageTest extends PageTest {
     public void userProfLocationChangeTest() {
         logger.info("Start test userProfCompanyChangeTest");
         String oldLocationInfo = userProfPage.getProfLocation();
-        userProfPage.setfProfLocation(NEWLOCINFO);
+        userProfPage.setProfLocation(NEWLOCINFO);
         userProfPage.btnUpdProfClick();
+        userProfPage.refreshPage();
         String newLocationInfo = userProfPage.getProfLocation();
         Assert.assertNotEquals(newLocationInfo, oldLocationInfo);
     }
