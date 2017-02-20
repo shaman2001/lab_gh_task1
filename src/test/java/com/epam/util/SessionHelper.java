@@ -55,8 +55,4 @@ public class SessionHelper {
         webDriver.findElement(By.cssSelector("button.dropdown-item.dropdown-signout")).click();
     }
 
-
-
-
-
 }

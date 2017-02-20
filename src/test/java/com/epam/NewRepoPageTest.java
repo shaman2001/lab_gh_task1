@@ -5,6 +5,7 @@ import com.epam.pages.NewRepoPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 /**
@@ -25,17 +26,19 @@ public class NewRepoPageTest extends PageTest{
         }
     }
 
+    @Parameters({"newrepo-name"})
     @AfterClass
-    public void removeChanges() {
+    public void removeChanges(String newRepoName) {
         this.driver.get(GITHUB_HOME_URL);
         homePage = new HomePage(driver);
-        homePage.delRepo(NEW_REPO_NAME);
+        homePage.delRepo(newRepoName);
     }
 
+    @Parameters({"newrepo-name"})
     @Test (description="Check of creating new repository availability",enabled = true)
-    public void CreateNewRepTest() {
+    public void CreateNewRepTest(String newRepoName) {
         logger.info("Start test CreateNewRepTest");
-        Assert.assertTrue(newRepoPage.createNewRepo(NEW_REPO_NAME));
+        Assert.assertTrue(newRepoPage.createNewRepo(newRepoName));
     }
 
 }

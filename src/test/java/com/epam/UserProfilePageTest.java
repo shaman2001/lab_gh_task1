@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.annotations.Parameters;
 
 /**
  * Created by Vladimir_Kotovich on 2/17/2017.
@@ -34,45 +35,51 @@ public class UserProfilePageTest extends PageTest {
         userProfPage.btnUpdProfClick();
     }
 
+    @Parameters({"newbio-info"})
     @Test (description="Check of changing user bio availability",enabled = true)
-    public void userProfBioChangeTest() {
+    public void userProfBioChangeTest(String newBioInfo) {
         logger.info("Start test userProfBioChangeTest");
         String oldBioInfo = userProfPage.getProfBioInfo();
-        userProfPage.setProfBioInfo(NEWBIOINFO);
+        userProfPage.setProfBioInfo(newBioInfo);
         userProfPage.btnUpdProfClick();
         userProfPage.refreshPage();
-        String newBioInfo = userProfPage.getProfBioInfo();
-        Assert.assertNotEquals(newBioInfo, oldBioInfo);
+        String tmpBioInfo = userProfPage.getProfBioInfo();
+        Assert.assertNotEquals(tmpBioInfo, oldBioInfo);
     }
 
+    @Parameters({"newurl-info"})
     @Test (description="Check of changing user URL availability",enabled = true)
-    public void userProfURLChangeTest() {
+    public void userProfURLChangeTest(String newURLInfo) {
         logger.info("Start test userProfURLChangeTest");
         String oldURLInfo = userProfPage.getProfURLInfo();
-        userProfPage.setProfURLInfo(NEWURLINFO);
+        userProfPage.setProfURLInfo(newURLInfo);
         userProfPage.btnUpdProfClick();
         userProfPage.refreshPage();
-        String newURLInfo = userProfPage.getProfURLInfo();
-        Assert.assertNotEquals(newURLInfo, oldURLInfo);
+        String tmpURLInfo = userProfPage.getProfURLInfo();
+        Assert.assertNotEquals(tmpURLInfo, oldURLInfo);
     }
+
+    @Parameters({"newcompany-info"})
     @Test (description ="Check of changing user company availability", enabled = true)
-    public void  userProfCompanyChangeTest() {
+    public void  userProfCompanyChangeTest(String newCompanyInfo) {
         logger.info("Start test userProfCompanyChangeTest");
         String oldCompanyInfo = userProfPage.getProfCompany();
-        userProfPage.setProfCompany(NEWCOMPANYINFO);
+        userProfPage.setProfCompany(newCompanyInfo);
         userProfPage.btnUpdProfClick();
         userProfPage.refreshPage();
-        String newCompanyInfo = userProfPage.getProfCompany();
-        Assert.assertNotEquals(newCompanyInfo, oldCompanyInfo);
+        String tmpCompanyInfo = userProfPage.getProfCompany();
+        Assert.assertNotEquals(tmpCompanyInfo, oldCompanyInfo);
     }
+
+    @Parameters({"newloc-info"})
     @Test (description ="Check of changing user location availability", enabled = true)
-    public void userProfLocationChangeTest() {
+    public void userProfLocationChangeTest(String newLocationInfo) {
         logger.info("Start test userProfCompanyChangeTest");
         String oldLocationInfo = userProfPage.getProfLocation();
-        userProfPage.setProfLocation(NEWLOCINFO);
+        userProfPage.setProfLocation(newLocationInfo);
         userProfPage.btnUpdProfClick();
         userProfPage.refreshPage();
-        String newLocationInfo = userProfPage.getProfLocation();
-        Assert.assertNotEquals(newLocationInfo, oldLocationInfo);
+        String tmpLocationInfo = userProfPage.getProfLocation();
+        Assert.assertNotEquals(tmpLocationInfo, oldLocationInfo);
     }
 }
