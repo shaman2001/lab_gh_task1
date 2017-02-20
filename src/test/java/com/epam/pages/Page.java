@@ -13,6 +13,7 @@ public abstract class Page {
 
   public Page(WebDriver webDriver) {
     this.webDriver = webDriver;
+    System.out.println("Open page with title: " + getTitle());
   }
 
   public String getTitle() {

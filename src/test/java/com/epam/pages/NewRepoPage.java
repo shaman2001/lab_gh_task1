@@ -15,9 +15,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
  * Created by shaman on 18.02.17.
  */
 public class NewRepoPage extends Page {
-    private final static String REPO_NAME = "test_repo";
+//    private final static String REPO_NAME = "test_repo";
 
-    @FindBy(id = "repository_name")
+    @FindBy(css = "input#repository_name")
     private WebElement fNewRepoName;
 
     @FindBy(xpath = "//*[@id=\"new_repository\"]/div[4]/button")

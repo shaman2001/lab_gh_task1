@@ -20,6 +20,7 @@ public class UserProfilePageTest extends PageTest {
 
     @BeforeClass
     public void InitPageObjects() {
+        logger.info("Attempt to open UserProfilePage");
         this.userProfPage = this.homePage.ddMenuProfileClick();
         if (userProfPage == null) {
             logger.error("UserProfilePage is not created");
