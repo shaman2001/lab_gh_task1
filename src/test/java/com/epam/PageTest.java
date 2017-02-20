@@ -19,7 +19,7 @@ import ru.stqa.selenium.factory.WebDriverFactory;
 import com.epam.util.PropertyLoader;
 
 import static com.epam.util.OSRecognizer.*;
-
+import static com.epam.util.SessionHelper.*;
 
 /**
  * Base class for TestNG-based test classes
@@ -91,7 +91,7 @@ public class PageTest {
     WebDriverFactory.dismissAll();
   }
 
-  private boolean isSigned(WebDriver webDriver) {
+  /**private boolean isSigned(WebDriver webDriver) {
     WebElement webElement = null;
     try {
       webElement = webDriver.findElement(By.xpath(".//div[contains(text(),'Signed in as')]"));
@@ -130,7 +130,7 @@ public class PageTest {
     }
     ddMenu.click();
     webDriver.findElement(By.cssSelector("button.dropdown-item.dropdown-signout")).click();
-  }
+  }**/
 }
 
 
