@@ -51,8 +51,9 @@ public class PageTest {
     }
   }
 
+  @Parameters({"user-name", "user-pass"})
   @BeforeClass
-  public void initWebDriver() {
+  public void initWebDriver(String userName, String userPass) {
     capabilities = DesiredCapabilities.chrome();
     logger.info("trying to connect to Webdriver");
     driver = WebDriverFactory.getDriver(capabilities);
@@ -63,14 +64,14 @@ public class PageTest {
       logger.info("trying to move to github login page");
       driver.get(GITHUB_LOGIN_URL);
       logger.info("trying to login github");
-      homePage = new LoginPage(driver).login(USERNAME, PASSWORD);
+      homePage = new LoginPage(driver).login(userName, userPass);
     } else {
-      if (!isSignedAs(driver, USERNAME)) { //if is not signed as %username%
+      if (!isSignedAs(driver, userName)) { //if is not signed as %username%
         logout(driver);
         logger.info("trying to move to github login page");
         driver.get(GITHUB_LOGIN_URL);
         logger.info("trying to login github");
-        homePage = new LoginPage(driver).login(USERNAME, PASSWORD);
+        homePage = new LoginPage(driver).login(userName, userPass);
       } else {
         driver.get(GITHUB_HOME_URL);
         homePage = new HomePage(driver);
