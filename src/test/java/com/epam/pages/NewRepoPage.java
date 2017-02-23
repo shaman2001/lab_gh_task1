@@ -5,22 +5,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-
-/**
- * Created by shaman on 18.02.17.
- */
 public class NewRepoPage extends Page {
-//    private final static String REPO_NAME = "test_repo";
+
+    private static final By REPONAME_LINK = By.xpath(".//strong[@itemprop='name']");
 
     @FindBy(css = "input#repository_name")
     private WebElement fNewRepoName;
 
-    @FindBy(xpath = "//*[@id=\"new_repository\"]/div[4]/button")
+    @FindBy(xpath = "//*[@id='new_repository']/div[4]/button")
     private WebElement btnNewRepoCreate;
 
     @FindBy(css = "input#repository_auto_init")
@@ -53,11 +48,10 @@ public class NewRepoPage extends Page {
         this.setAutoInitChBox();
         this.btnNewRepoCreateClick();
         (new WebDriverWait(webDriver, 10)).until(ExpectedConditions
-                .presenceOfElementLocated(By.xpath(".//strong[@itemprop='name']")));
+                .presenceOfElementLocated(REPONAME_LINK));
 
-        result = webDriver.findElement(By.xpath(".//strong[@itemprop='name']"))
+        result = webDriver.findElement(REPONAME_LINK)
                 .getText().equals(repo_name);
-        //webDriver.navigate().back();
         return result;
     }
 

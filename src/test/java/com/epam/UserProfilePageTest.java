@@ -11,10 +11,10 @@ import org.testng.annotations.Parameters;
  * Created by Vladimir_Kotovich on 2/17/2017.
  */
 public class UserProfilePageTest extends PageTest {
-    private final static String NEWBIOINFO = "was born, live, not died";
-    private final static String NEWURLINFO = "http://www.livejournal.com";
-    private final static  String NEWCOMPANYINFO = "EPAM Systems";
-    private final static String NEWLOCINFO = "Earth, Belarus, Minsk";
+//    private final static String NEWBIOINFO = "was born, live, not died";
+//    private final static String NEWURLINFO = "http://www.livejournal.com";
+//    private final static  String NEWCOMPANYINFO = "EPAM Systems";
+//    private final static String NEWLOCINFO = "Earth, Belarus, Minsk";
 
     protected UserProfilePage userProfPage = null;
 

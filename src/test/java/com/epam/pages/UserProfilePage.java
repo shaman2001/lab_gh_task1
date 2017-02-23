@@ -5,9 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-/**
- * Created by Vladimir_Kotovich on 2/17/2017.
- */
 public class UserProfilePage extends Page {
 
     @FindBy (xpath = ".//input[@id='user_profile_name']")

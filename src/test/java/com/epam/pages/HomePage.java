@@ -1,7 +1,6 @@
 package com.epam.pages;
 
-import java.util.List;
-
+import com.epam.util.PropertyLoader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,8 +8,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.Alert;
+
+import java.util.List;
 
 /**
  * Sample page
@@ -18,86 +17,87 @@ import org.openqa.selenium.Alert;
 public class HomePage extends Page {
     private final static String USERNAME = "shaman2001";
 
-  @FindBy(xpath = ".//img[@class='avatar']")
-  private WebElement ddMenuView;
+//    private static final By SETTINGS_TABLE_LOCATOR = By.cssSelector("a:nth-child(8)");
+    private static final By SETTINGS_TABLE_LOCATOR1 = By.xpath(".//a[@class='js-selected-navigation-item reponav-item'][contains(@href, 'settings')]");
+    private static final By BUTTON_DELETE_THIS_REPOSITORY = By.xpath(".//button[@type='button'][3]");
+    private static final By FIELD_ENTER_REPO_NAME = By.cssSelector("#facebox>div>div>form>p>input");
 
-  @FindBy(xpath = ".//a[contains(text(),'Your profile')]")
-  private WebElement ddMenuProfile;
+    //@FindBy(xpath = ".//img[@class='avatar']") //for chrome
+    @FindBy(xpath = "//a[@class='header-nav-link name tooltipped tooltipped-sw js-menu-target']") //for firefox
+    private WebElement ddMenuView;
 
-  @FindBy(xpath = ".//a[contains(text(),'Settings')]")
-  private WebElement ddMenuSettings;
+    //@FindBy(xpath = ".//a[contains(text(),'Your profile')]") //for chrome
+    @FindBy(xpath = "//a[@class='dropdown-item'][1]") //for firefox
+    private WebElement ddMenuProfile;
 
-  @FindBy(css = "a.btn.btn-sm.btn-primary")
-  private WebElement btnNewRepo;
 
-  @FindBy(xpath = ".//span[@class='repo']")
-  private List<WebElement> listRepos;
+    //@FindBy(xpath = ".//a[contains(text(),'Settings')]") //for chrome
+    @FindBy(xpath = "//a[@class='dropdown-item'][6]") //for firefox
+    private WebElement ddMenuSettings;
 
-  public HomePage(WebDriver webDrv) {
-    super(webDrv);
-    PageFactory.initElements(this.webDriver, this);
-  }
+    @FindBy(css = "a.btn.btn-sm.btn-primary")
+    private WebElement btnNewRepo;
 
-  public UserProfilePage ddMenuProfileClick() {
-    ddMenuView.click();
-    ddMenuSettings.click();
-    return new UserProfilePage(this.webDriver);
-  }
+    @FindBy(xpath = ".//span[@class='repo']")
+    private List<WebElement> listRepos;
 
-  public NewRepoPage btnNewRepClick() {
-    btnNewRepo.click();
-    return new NewRepoPage(this.webDriver);
-  }
+    public HomePage(WebDriver webDrv) {
+        super(webDrv);
+        //this.webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        PageFactory.initElements(this.webDriver, this);
+    }
 
-  public boolean delRepo(String repo_name) {
-      boolean result = false;
-      WebElement repo_link;
-    //click repo link if exists
-      if ((repo_link = getRepoLink(repo_name)) != null) {
-          repo_link.click();
-          //wait for settings tab to be clickable and click it
-          (new WebDriverWait(webDriver, 10)).until(ExpectedConditions
-                    .presenceOfElementLocated(By.cssSelector("a:nth-child(8)")));
-          //By.cssSelector("a:nth-child(8)").findElement(webDriver).click();
-          webDriver.findElement(By.xpath(".//a[@class='js-selected-navigation-item reponav-item'][contains(@href, 'settings')]")).click();
-          //wait for "delete repo page" load
-          (new WebDriverWait(webDriver, 10)).until(ExpectedConditions.
-                  presenceOfElementLocated(By.xpath(".//button[@type='button'][3]")));
-          //if rename field contains not correct repo name then exit with return false
-          if (!webDriver.findElement(By.id("rename_field")).getAttribute("value").equals(repo_name)) {
-              return false;
-          }
-          //click button "Delete this repository"
-          webDriver.findElement(By.xpath(".//button[@type='button'][3]")).click();
-          //pass the verify procedure
-          String myWindowHandle = webDriver.getWindowHandle();
-          webDriver.switchTo().window(myWindowHandle);
-          WebElement fVerify = webDriver.findElement(By.cssSelector("#facebox>div>div>form>p>input"));
-          //alert.sendKeys(USERNAME + "/" + repo_name);
-          //alert.accept();
-          String str = USERNAME + "/" + repo_name;
-//          new Actions(this.webDriver).sendKeys(fVerify, str).build().perform();
-          fVerify.sendKeys(str);
-          fVerify.submit();
-          PageFactory.initElements(this.webDriver, this);
-          result = getRepoLink(repo_name) == null;
-      }
-      return result;
-  }
+    public UserProfilePage ddMenuProfileClick() {
+        ddMenuView.click();
+        ddMenuSettings.click();
+        return new UserProfilePage(this.webDriver);
+    }
 
-  public WebElement getRepoLink(String repo_name) {
-      WebElement result = null;
-//      int len = listRepos.size();
-      for (WebElement el: listRepos) {
-//          String str = el.getText();
-          if (el.getText().equals(repo_name)) {
-              result = el;
-              break;
-          }
-      }
-      return result;
-  }
+    public NewRepoPage btnNewRepClick() {
+        btnNewRepo.click();
+        return new NewRepoPage(this.webDriver);
+    }
 
+    public boolean delRepo(String repo_name) {
+        boolean repoDeleted = false;
+        //click repo link if exists
+        if (isRepoExists(repo_name)) {
+            getExistingRepo(repo_name).click();
+            //wait for settings tab to be present and click it
+            (new WebDriverWait(webDriver, 10)).until(ExpectedConditions
+                    .presenceOfElementLocated(SETTINGS_TABLE_LOCATOR1));
+            webDriver.findElement(SETTINGS_TABLE_LOCATOR1).click();
+            //wait for "delete repo page" load
+            (new WebDriverWait(webDriver, 10)).until(ExpectedConditions.
+                    presenceOfElementLocated(BUTTON_DELETE_THIS_REPOSITORY));
+            webDriver.findElement(BUTTON_DELETE_THIS_REPOSITORY).click();
+            //pass the verify procedure
+            String confirmationPopup = webDriver.getWindowHandle();
+            webDriver.switchTo().window(confirmationPopup);
+            WebElement fVerify = webDriver.findElement(FIELD_ENTER_REPO_NAME);
+            String str = PropertyLoader.getProperty("user.name") + "/" + repo_name;
+            fVerify.sendKeys(str);
+            fVerify.submit();
+            PageFactory.initElements(this.webDriver, this);
+            //webDriver.switchTo().defaultContent();
+        }
+        return isRepoExists(repo_name);
+    }
+
+    private boolean isRepoExists(String name){
+        return !(getExistingRepo(name) == null);
+    }
+
+    public WebElement getExistingRepo(String repo_name) {
+        WebElement result = null;
+        for (WebElement el : listRepos) {
+            if (el.getText().equals(repo_name)) {
+                result = el;
+                break;
+            }
+        }
+        return result;
+    }
 
 
 }

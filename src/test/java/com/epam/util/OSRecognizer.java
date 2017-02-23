@@ -1,8 +1,6 @@
 package com.epam.util;
 
-/**
- * Created by shaman on 18.02.17.
- */
+
 public class OSRecognizer {
 
     private static String OS = System.getProperty("os.name").toLowerCase();
@@ -17,9 +15,5 @@ public class OSRecognizer {
 
     public static boolean isUnix() {
         return (OS.contains("nix") || OS.contains("nux") || OS.contains("aix") );
-    }
-
-    public static boolean isSolaris() {
-        return (OS.contains("sunos"));
     }
 }
