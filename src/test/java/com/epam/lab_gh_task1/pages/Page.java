@@ -1,11 +1,8 @@
-package com.epam.pages;
+package com.epam.lab_gh_task1.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
-/**
- * Abstract class representation of a Page in the UI. Page object pattern
- */
 public abstract class Page {
 
     protected WebDriver webDriver;

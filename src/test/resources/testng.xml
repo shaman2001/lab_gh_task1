@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="LAB_gh_tests"  verbose="5">
+<suite name="lab_gh_tests"  verbose="5">
   <parameter name = "user-name" value = "shaman2001"/>
   <parameter name = "user-pass" value = "qwerty123"/>
   <parameter name = "browser-name" value = "chrome"/>
@@ -10,13 +10,14 @@
     <parameter name = "newcompany-info" value = "EPAM Systems"/>
     <parameter name = "newloc-info" value = "Earth, Belarus, Minsk"/>
     <classes>
-      <class name="com.epam.UserProfilePageTest"/>
+      <class name="com.epam.lab_gh_task1.UserProfilePageTest"/>
+
     </classes>
   </test>
   <test name="NewRepoPageTest">
     <parameter name = "newrepo-name" value = "test_repo"/>
     <classes>
-      <class name="com.epam.NewRepoPageTest"/>
+      <class name="com.epam.lab_gh_task1.NewRepoPageTest"/>
     </classes>
   </test>
 </suite>

@@ -1,16 +1,13 @@
-package com.epam;
+package com.epam.lab_gh_task1;
 
-import com.epam.pages.HomePage;
-import com.epam.pages.NewRepoPage;
+import com.epam.lab_gh_task1.pages.NewRepoPage;
+import com.epam.lab_gh_task1.pages.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-/**
- * Created by shaman on 19.02.17.
- */
 public class NewRepoPageTest extends PageTest {
 
     //    private static final String NEW_REPO_NAME = "test_repo";

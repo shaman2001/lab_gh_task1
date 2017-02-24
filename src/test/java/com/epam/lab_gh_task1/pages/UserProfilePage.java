@@ -1,4 +1,4 @@
-package com.epam.pages;
+package com.epam.lab_gh_task1.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

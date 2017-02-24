@@ -1,6 +1,6 @@
-package com.epam.pages;
+package com.epam.lab_gh_task1.pages;
 
-import com.epam.util.PropertyLoader;
+import com.epam.lab_gh_task1.util.PropertyLoader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,14 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
 
-/**
- * Sample page
- */
+
 public class HomePage extends Page {
-    private final static String USERNAME = "shaman2001";
+//    private final static String USERNAME = "shaman2001";
 
 //    private static final By SETTINGS_TABLE_LOCATOR = By.cssSelector("a:nth-child(8)");
     private static final By SETTINGS_TABLE_LOCATOR1 = By.xpath(".//a[@class='js-selected-navigation-item reponav-item'][contains(@href, 'settings')]");
@@ -59,7 +56,6 @@ public class HomePage extends Page {
     }
 
     public boolean delRepo(String repo_name) {
-        boolean repoDeleted = false;
         //click repo link if exists
         if (isRepoExists(repo_name)) {
             getExistingRepo(repo_name).click();

@@ -1,4 +1,4 @@
-package com.epam;
+package com.epam.lab_gh_task1;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

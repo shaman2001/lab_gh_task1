@@ -1,4 +1,4 @@
-package com.epam.util;
+package com.epam.lab_gh_task1.util;
 
 
 import org.testng.IInvokedMethod;

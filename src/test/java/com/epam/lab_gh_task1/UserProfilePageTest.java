@@ -1,15 +1,12 @@
-package com.epam;
+package com.epam.lab_gh_task1;
 
-import com.epam.pages.UserProfilePage;
+import com.epam.lab_gh_task1.pages.UserProfilePage;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.annotations.Parameters;
 
-/**
- * Created by Vladimir_Kotovich on 2/17/2017.
- */
 public class UserProfilePageTest extends PageTest {
 //    private final static String NEWBIOINFO = "was born, live, not died";
 //    private final static String NEWURLINFO = "http://www.livejournal.com";
