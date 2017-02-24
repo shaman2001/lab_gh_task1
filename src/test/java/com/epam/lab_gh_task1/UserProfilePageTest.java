@@ -16,13 +16,10 @@ public class UserProfilePageTest extends PageTest {
     protected UserProfilePage userProfPage = null;
 
     @BeforeClass
-    public void InitPageObjects() {
-        logger.info("Attempt to open UserProfilePage");
-        this.userProfPage = this.homePage.ddMenuProfileClick();
-        if (userProfPage == null) {
-            logger.error("UserProfilePage is not created");
-        }
-    }
+    public void jumpToUserProfilePage() {
+        logger.info("Attempt to open current user profile page");
+        userProfPage = super.homePage.ddMenuProfileClick();
+     }
 
     @AfterClass
     public void removeChanges() {

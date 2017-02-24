@@ -16,7 +16,8 @@ public class NewRepoPageTest extends PageTest {
     protected NewRepoPage newRepoPage = null;
 
     @BeforeClass
-    public void InitPageObjects() {
+    public void jumpToNewRepoPage() {
+        logger.info("Attempt to open Create new repository page");
         newRepoPage = this.homePage.btnNewRepClick();
     }
 

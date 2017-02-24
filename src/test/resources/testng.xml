@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="lab_gh_tests"  verbose="5">
+<suite name="lab_gh_tests"  parallel="classes" thread-count="2" verbose="5">
   <parameter name = "user-name" value = "shaman2001"/>
   <parameter name = "user-pass" value = "qwerty123"/>
   <parameter name = "browser-name" value = "chrome"/>
@@ -11,7 +11,6 @@
     <parameter name = "newloc-info" value = "Earth, Belarus, Minsk"/>
     <classes>
       <class name="com.epam.lab_gh_task1.UserProfilePageTest"/>
-
     </classes>
   </test>
   <test name="NewRepoPageTest">
