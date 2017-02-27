@@ -16,11 +16,11 @@ public class HomePage extends Page {
 
 //    private static final By SETTINGS_TABLE_LOCATOR = By.cssSelector("a:nth-child(8)");
     private static final By SETTINGS_TABLE_LOCATOR1 = By.xpath(".//a[@class='js-selected-navigation-item reponav-item'][contains(@href, 'settings')]");
-    private static final By BUTTON_DELETE_THIS_REPOSITORY = By.xpath(".//button[@type='button'][3]");
+    private static final By BUTTON_DELETE_THIS_REPOSITORY = By.xpath("//button[contains(text(),'Delete this repository')]");
     private static final By FIELD_ENTER_REPO_NAME = By.cssSelector("#facebox>div>div>form>p>input");
 
-    //@FindBy(xpath = ".//img[@class='avatar']") //for chrome
-    @FindBy(xpath = "//a[@class='header-nav-link name tooltipped tooltipped-sw js-menu-target']") //for firefox
+    @FindBy(xpath = ".//img[@class='avatar']") //for chrome
+    //@FindBy(xpath = "//a[@class='header-nav-link name tooltipped tooltipped-sw js-menu-target']") //for firefox
     private WebElement ddMenuView;
 
     //@FindBy(xpath = ".//a[contains(text(),'Your profile')]") //for chrome
@@ -42,6 +42,8 @@ public class HomePage extends Page {
         super(webDrv);
         //this.webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         PageFactory.initElements(this.webDriver, this);
+        (new WebDriverWait(webDriver, 10)).until(ExpectedConditions.
+                        elementToBeClickable(ddMenuView));
     }
 
     public UserProfilePage ddMenuProfileClick() {
@@ -60,11 +62,11 @@ public class HomePage extends Page {
         if (isRepoExists(repo_name)) {
             getExistingRepo(repo_name).click();
             //wait for settings tab to be present and click it
-            (new WebDriverWait(webDriver, 10)).until(ExpectedConditions
+            (new WebDriverWait(webDriver, 3)).until(ExpectedConditions
                     .presenceOfElementLocated(SETTINGS_TABLE_LOCATOR1));
             webDriver.findElement(SETTINGS_TABLE_LOCATOR1).click();
             //wait for "delete repo page" load
-            (new WebDriverWait(webDriver, 10)).until(ExpectedConditions.
+            (new WebDriverWait(webDriver, 3)).until(ExpectedConditions.
                     presenceOfElementLocated(BUTTON_DELETE_THIS_REPOSITORY));
             webDriver.findElement(BUTTON_DELETE_THIS_REPOSITORY).click();
             //pass the verify procedure

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="lab_gh_tests"  parallel="classes" thread-count="2" verbose="5">
-  <parameter name = "user-name" value = "shaman2001"/>
+<suite name="lab_gh_tests"  parallel="classes" thread-count="1" verbose="5">
+  <parameter name = "user-name" value = "shaman2001-test"/>
   <parameter name = "user-pass" value = "qwerty123"/>
   <parameter name = "browser-name" value = "chrome"/>
   <test name="UserProfilePageTest">

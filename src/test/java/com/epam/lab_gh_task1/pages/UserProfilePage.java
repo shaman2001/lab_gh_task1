@@ -1,11 +1,18 @@
 package com.epam.lab_gh_task1.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UserProfilePage extends Page {
+
+    private static final By BUTTON_CLOSE_CONFIRM = By.cssSelector("button.flash-close.js-flash-close");
+    private static final By POPUP_CONTAINER_CONFIRM = By.xpath("//text()[contains(.,'successfully')]/parent::*");
+
 
     @FindBy (xpath = ".//input[@id='user_profile_name']")
     private WebElement fProfName;
@@ -92,8 +99,17 @@ public class UserProfilePage extends Page {
     public void btnUpdProfClick() {
         if (btnUpdProfile.isEnabled()) {
             btnUpdProfile.click();
-            PageFactory.initElements(this.webDriver, this);
         }
     }
+
+    public boolean updateAndWaitConfirmation() {
+        this.btnUpdProfClick();
+        (new WebDriverWait(webDriver, 5)).until(ExpectedConditions.
+                presenceOfElementLocated(POPUP_CONTAINER_CONFIRM));
+        webDriver.findElement(BUTTON_CLOSE_CONFIRM).click();
+        return true;
+
+    }
+
 
 }

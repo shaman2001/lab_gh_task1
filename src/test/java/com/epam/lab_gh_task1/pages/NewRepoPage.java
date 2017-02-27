@@ -47,7 +47,7 @@ public class NewRepoPage extends Page {
         this.setRepoName(repo_name);
         this.setAutoInitChBox();
         this.btnNewRepoCreateClick();
-        (new WebDriverWait(webDriver, 10)).until(ExpectedConditions
+        (new WebDriverWait(webDriver, 2)).until(ExpectedConditions
                 .presenceOfElementLocated(REPONAME_LINK));
 
         result = webDriver.findElement(REPONAME_LINK)

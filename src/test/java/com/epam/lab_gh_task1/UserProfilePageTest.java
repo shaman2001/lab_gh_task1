@@ -8,10 +8,6 @@ import org.testng.annotations.Test;
 import org.testng.annotations.Parameters;
 
 public class UserProfilePageTest extends PageTest {
-//    private final static String NEWBIOINFO = "was born, live, not died";
-//    private final static String NEWURLINFO = "http://www.livejournal.com";
-//    private final static  String NEWCOMPANYINFO = "EPAM Systems";
-//    private final static String NEWLOCINFO = "Earth, Belarus, Minsk";
 
     protected UserProfilePage userProfPage = null;
 
@@ -36,8 +32,7 @@ public class UserProfilePageTest extends PageTest {
         logger.info("Start test userProfBioChangeTest");
         String oldBioInfo = userProfPage.getProfBioInfo();
         userProfPage.setProfBioInfo(newBioInfo);
-        userProfPage.btnUpdProfClick();
-        userProfPage.refreshPage();
+        userProfPage.updateAndWaitConfirmation();
         String tmpBioInfo = userProfPage.getProfBioInfo();
         Assert.assertNotEquals(tmpBioInfo, oldBioInfo);
     }
@@ -48,8 +43,7 @@ public class UserProfilePageTest extends PageTest {
         logger.info("Start test userProfURLChangeTest");
         String oldURLInfo = userProfPage.getProfURLInfo();
         userProfPage.setProfURLInfo(newURLInfo);
-        userProfPage.btnUpdProfClick();
-        userProfPage.refreshPage();
+        userProfPage.updateAndWaitConfirmation();
         String tmpURLInfo = userProfPage.getProfURLInfo();
         Assert.assertNotEquals(tmpURLInfo, oldURLInfo);
     }
@@ -60,8 +54,7 @@ public class UserProfilePageTest extends PageTest {
         logger.info("Start test userProfCompanyChangeTest");
         String oldCompanyInfo = userProfPage.getProfCompany();
         userProfPage.setProfCompany(newCompanyInfo);
-        userProfPage.btnUpdProfClick();
-        userProfPage.refreshPage();
+        userProfPage.updateAndWaitConfirmation();
         String tmpCompanyInfo = userProfPage.getProfCompany();
         Assert.assertNotEquals(tmpCompanyInfo, oldCompanyInfo);
     }
@@ -72,8 +65,7 @@ public class UserProfilePageTest extends PageTest {
         logger.info("Start test userProfCompanyChangeTest");
         String oldLocationInfo = userProfPage.getProfLocation();
         userProfPage.setProfLocation(newLocationInfo);
-        userProfPage.btnUpdProfClick();
-        userProfPage.refreshPage();
+        userProfPage.updateAndWaitConfirmation();
         String tmpLocationInfo = userProfPage.getProfLocation();
         Assert.assertNotEquals(tmpLocationInfo, oldLocationInfo);
     }
