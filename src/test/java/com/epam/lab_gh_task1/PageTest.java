@@ -36,18 +36,13 @@ public class PageTest {
     public void initWebDriver(String userName, String userPass) {
         logger.info("trying to connect to Webdriver");
         driver = WebDriverHelper.getDriver(capabilities);
-        //driver = WebDriverFactory.getDriver(capabilities);
-        //driver = new ChromeDriver(capabilities);
         driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-//        driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.SECONDS);
         homePage = SessionHelper.ensureSignIn(driver, userName, userPass);
     }
 
     @AfterSuite(alwaysRun = true)
     public void tearDown() {
         logger.info("all test are completed");
-        //WebDriverFactory.dismissAll();
         WebDriverHelper.cLoseAllDrivers();
     }
 }
