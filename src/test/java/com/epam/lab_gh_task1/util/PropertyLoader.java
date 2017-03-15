@@ -7,7 +7,8 @@ import java.util.Properties;
 
 public class PropertyLoader {
 
-    private static final  String PROPERTIES_FILE_PATH = "src\\test\\resources\\framework.properties";
+    private static final String FS = File.separator;
+    private static final  String PROPERTIES_FILE_PATH = "src"+FS+"test"+FS+"resources"+FS+"framework.properties";
     private static Properties prop = new Properties();
 
     static {

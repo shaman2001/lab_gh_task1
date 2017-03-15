@@ -13,11 +13,6 @@ public class WebDriverHelper {
 
     private static Map<String, WebDriver> driverList = new HashMap<>();
 
-    /*private static Map<String, WebDriver> drivers = new HashMap<String, WebDriver>() {{
-        drivers.put("chrome",new ChromeDriver());
-        drivers.put("opera",new OperaDriver());
-        drivers.put("firefox",new FirefoxDriver());
-    }};*/
 
     public static WebDriver getDriver(DesiredCapabilities cap) {
         WebDriver driver;
@@ -59,6 +54,7 @@ public class WebDriverHelper {
     public static void cLoseAllDrivers() {
         for (WebDriver wd: driverList.values()) {
            wd.quit();
+           wd = null;
         }
     }
 
