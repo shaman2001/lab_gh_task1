@@ -7,10 +7,7 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import java.io.IOException;
 
@@ -25,7 +22,7 @@ public class PageTest {
 
     @Parameters({"browser-name"})
     @BeforeSuite
-    public void initTestSuite(String browserName) throws IOException {
+    public void initTestSuite(@Optional("chrome") String browserName) throws IOException {
         if ((capabilities = SessionHelper.getBrowserCaps(browserName.toLowerCase())) == null) {
             throw new NoSuchSessionException("Required parameters can't be set");
         }
@@ -33,7 +30,7 @@ public class PageTest {
 
     @Parameters({"user-name", "user-pass"})
     @BeforeClass
-    public void initWebDriver(String userName, String userPass) {
+    public void initWebDriver(@Optional("shaman2001-test") String userName, @Optional("qwerty123") String userPass) {
         logger.info("trying to connect to Webdriver");
         driver = WebDriverHelper.getDriver(capabilities);
         driver.manage().window().maximize();
