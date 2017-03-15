@@ -19,19 +19,19 @@ public class WebDriverHelper {
         String browserName = cap.getBrowserName();
         switch (browserName) {
             case "chrome":
-                if (!isAllreadyRuns(browserName)) {
+                if (!isAlreadyRuns(browserName)) {
                     driver = new ChromeDriver(cap);
                     driverList.put("chrome", driver);
                 }
                 break;
             case "firefox":
-                if (!isAllreadyRuns(browserName)) {
+                if (!isAlreadyRuns(browserName)) {
                     driver = new FirefoxDriver(cap);
                     driverList.put("firefox", driver);
                 }
                 break;
             case "opera":
-                if (!isAllreadyRuns(browserName)) {
+                if (!isAlreadyRuns(browserName)) {
                     driver = new OperaDriver(cap);
                     driverList.put("opera", driver);
                 }
@@ -40,7 +40,7 @@ public class WebDriverHelper {
         return driverList.get(browserName);
     }
 
-    private static boolean isAllreadyRuns(String driverName) {
+    private static boolean isAlreadyRuns(String driverName) {
         boolean result = false;
         for (String key: driverList.keySet()) {
             if (key.equals(driverName)) {
