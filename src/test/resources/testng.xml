@@ -3,7 +3,7 @@
 <suite name="lab_gh_tests"  parallel="classes" thread-count="1" verbose="5">
   <parameter name = "user-name" value = "shaman2001-test"/>
   <parameter name = "user-pass" value = "qwerty123"/>
-  <parameter name = "browser-name" value = "firefox"/>
+  <parameter name = "browser-name" value = "chrome"/>
   <test name="UserProfilePageTest">
     <parameter name = "newbio-info" value = "was born, live, not died"/>
     <parameter name = "newurl-info" value = "http://www.livejournal.com"/>
