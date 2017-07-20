@@ -8,12 +8,12 @@
   <properties>
   	<java.version>1.8</java.version>
   	<maven.compiler.version>3.6.1</maven.compiler.version>
-    <maven.surefire.version>2.19.1</maven.surefire.version>
+    <maven.surefire.version>2.20</maven.surefire.version>
     <maven.resources.version>3.0.2</maven.resources.version>
-    <selenium.version>3.1.0</selenium.version>
-    <testng.version>6.10</testng.version>
+    <selenium.version>3.4.0</selenium.version>
+    <testng.version>6.11</testng.version>
     <webdriver.factory.version>2.1</webdriver.factory.version>
-    <log4j.version>1.2.17</log4j.version>
+    <cucumber.version>1.2.5</cucumber.version>
     <log4j.core.version>2.6.2</log4j.core.version>
   </properties>
   <dependencies>
@@ -21,6 +21,18 @@
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>${testng.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-testng</artifactId>
+      <version>${cucumber.version}</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>ru.stqa.selenium</groupId>
@@ -58,15 +70,15 @@
       <version>${selenium.version}</version>
     </dependency>
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>${log4j.version}</version>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j.core.version}</version>
     </dependency>
   </dependencies>
   <build>
     <testResources>
       <testResource>
-        <directory>src/resources</directory>
+        <directory>src/test/resources</directory>
         <filtering>true</filtering>
       </testResource>
     </testResources>

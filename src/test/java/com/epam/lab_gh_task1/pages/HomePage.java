@@ -23,13 +23,12 @@ public class HomePage extends Page {
     //@FindBy(xpath = "//a[@class='header-nav-link name tooltipped tooltipped-sw js-menu-target']") //for firefox
     private WebElement ddMenuView;
 
-    //@FindBy(xpath = ".//a[contains(text(),'Your profile')]") //for chrome
-    @FindBy(xpath = "//a[@class='dropdown-item'][1]") //for firefox
+    @FindBy(xpath = "//a[normalize-space(text())='Your profile']") //for chrome
+    //@FindBy(xpath = "//a[@class='dropdown-item'][1]") //for firefox
     private WebElement ddMenuProfile;
 
 
-    //@FindBy(xpath = ".//a[contains(text(),'Settings')]") //for chrome
-    @FindBy(xpath = "//a[@class='dropdown-item'][6]") //for firefox
+    @FindBy(xpath = "//a[normalize-space(text())='Settings']") //for firefox
     private WebElement ddMenuSettings;
 
     @FindBy(css = "a.btn.btn-sm.btn-primary")
@@ -41,7 +40,6 @@ public class HomePage extends Page {
     public HomePage(WebDriver webDrv) {
         super(webDrv);
         //this.webDriver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        PageFactory.initElements(this.webDriver, this);
         (new WebDriverWait(webDriver, 10)).until(ExpectedConditions.
                         elementToBeClickable(ddMenuView));
     }

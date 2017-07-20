@@ -3,7 +3,8 @@ package com.epam.lab_gh_task1;
 import com.epam.lab_gh_task1.pages.HomePage;
 import com.epam.lab_gh_task1.util.SessionHelper;
 import com.epam.lab_gh_task1.util.WebDriverHelper;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -17,7 +18,7 @@ public class PageTest {
 
     protected WebDriver driver = null;
     protected HomePage homePage = null;
-    Logger logger = Logger.getLogger("TestLogger");
+    public final static Logger LOG = LogManager.getLogger(LogManager.getRootLogger());
 
 
     @Parameters({"browser-name"})
@@ -31,7 +32,7 @@ public class PageTest {
     @Parameters({"user-name", "user-pass"})
     @BeforeClass
     public void initWebDriver(@Optional("shaman2001-test") String userName, @Optional("qwerty123") String userPass) {
-        logger.info("trying to connect to Webdriver");
+        LOG.info("trying to connect to Webdriver");
         driver = WebDriverHelper.getDriver(capabilities);
         driver.manage().window().maximize();
         homePage = SessionHelper.ensureSignIn(driver, userName, userPass);
@@ -39,7 +40,7 @@ public class PageTest {
 
     @AfterSuite(alwaysRun = true)
     public void tearDown() {
-        logger.info("all test are completed");
+        LOG.info("all test are completed");
         WebDriverHelper.cLoseAllDrivers();
     }
 }

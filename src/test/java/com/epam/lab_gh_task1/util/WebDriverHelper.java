@@ -54,7 +54,6 @@ public class WebDriverHelper {
     public static void cLoseAllDrivers() {
         for (WebDriver wd: driverList.values()) {
            wd.quit();
-           wd = null;
         }
     }
 

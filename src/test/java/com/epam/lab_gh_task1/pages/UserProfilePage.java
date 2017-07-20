@@ -10,8 +10,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UserProfilePage extends Page {
 
-    private static final By BUTTON_CLOSE_CONFIRM = By.cssSelector("button.flash-close.js-flash-close");
-    private static final By POPUP_CONTAINER_CONFIRM = By.xpath("//text()[contains(.,'successfully')]/parent::*");
+    public static final By BUTTON_CLOSE_CONFIRM = By.cssSelector("button.flash-close.js-flash-close");
+    public static final By POPUP_CONTAINER_CONFIRM = By.xpath("//text()[contains(.,'successfully')]/parent::*");
 
 
     @FindBy (xpath = ".//input[@id='user_profile_name']")
@@ -32,12 +32,11 @@ public class UserProfilePage extends Page {
     @FindBy(xpath = ".//input[@id='user_profile_location']")
     private WebElement fProfLocation;
 
-    @FindBy(xpath = ".//p/button[@class='btn']")
+    @FindBy(xpath = ".//p/button[@type='submit' and normalize-space(text())='Update profile']")
     private WebElement btnUpdProfile;
 
     public UserProfilePage(WebDriver webDrv) {
         super(webDrv);
-        PageFactory.initElements(this.webDriver, this);
     }
 
     public String getProfName() {

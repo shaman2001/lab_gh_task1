@@ -11,12 +11,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class NewRepoPage extends Page {
 
     private static final By REPONAME_LINK = By.xpath(".//strong[@itemprop='name']");
+    private static final By BTN_NEW_REPO = By.xpath("//button[@type='submit' and normalize-space(text())='Create repository']");
 
     @FindBy(css = "input#repository_name")
     private WebElement fNewRepoName;
 
-    @FindBy(xpath = "//*[@id='new_repository']/div[4]/button")
+    @FindBy(xpath = "//button[@type='submit' and normalize-space(text())='Create repository']")
     private WebElement btnNewRepoCreate;
+    //button[href*="w3schools"]
 
     @FindBy(css = "input#repository_auto_init")
     private WebElement chboxAutoInit;
@@ -25,11 +27,11 @@ public class NewRepoPage extends Page {
 
     public NewRepoPage(WebDriver webDrv) {
         super(webDrv);
-        PageFactory.initElements(this.webDriver, this);
     }
 
     public void btnNewRepoCreateClick() {
-        btnNewRepoCreate.click();
+        //btnNewRepoCreate.click();
+        clickOnElementWithJS(btnNewRepoCreate);
     }
 
     public void setRepoName(String val) {
@@ -46,13 +48,13 @@ public class NewRepoPage extends Page {
         boolean result = false;
         this.setRepoName(repo_name);
         this.setAutoInitChBox();
-        this.btnNewRepoCreateClick();
-        (new WebDriverWait(webDriver, 2)).until(ExpectedConditions
+        (new WebDriverWait(webDriver, 15)).until(ExpectedConditions
+                .elementToBeClickable(BTN_NEW_REPO)).click();
+        WebElement txtBoxRepoName = (new WebDriverWait(webDriver, 15)).until(ExpectedConditions
                 .presenceOfElementLocated(REPONAME_LINK));
 
-        result = webDriver.findElement(REPONAME_LINK)
-                .getText().equals(repo_name);
-        return result;
+        //result = txtBoxRepoName.getText().equals(repo_name);
+        return txtBoxRepoName.getText().equals(repo_name);
     }
 
 }

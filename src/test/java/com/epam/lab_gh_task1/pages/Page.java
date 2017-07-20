@@ -1,6 +1,8 @@
 package com.epam.lab_gh_task1.pages;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 public abstract class Page {
@@ -10,6 +12,7 @@ public abstract class Page {
 
     public Page(WebDriver webDriver) {
         this.webDriver = webDriver;
+        PageFactory.initElements(this.webDriver, this);
         System.out.println("Open page with title: " + getTitle());
     }
 
@@ -19,7 +22,11 @@ public abstract class Page {
 
     public void refreshPage() {
         this.webDriver.navigate().refresh();
-        PageFactory.initElements(this.webDriver, this);
+    }
+
+    public void clickOnElementWithJS(WebElement webElement) {
+        JavascriptExecutor js = (JavascriptExecutor) webDriver;
+        js.executeScript("arguments[0].click();", webElement);
     }
 
 
